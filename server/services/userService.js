@@ -3,12 +3,13 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 module.exports.createUser = async serviceData => {
+  console.error(serviceData)
   try {
     const user = await User.findOne({ email: serviceData.email })
     if (user) {
       throw new Error('Email already exists')
     }
-
+    
     const hashPassword = await bcrypt.hash(serviceData.password, 12)
 
     const newUser = new User({
