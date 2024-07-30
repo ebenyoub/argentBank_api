@@ -1,10 +1,15 @@
-const userService = require('../services/userService')
+import { 
+  createUser as createUserService, 
+  loginUser as loginUserService, 
+  getUserProfile as getUserProfileService, 
+  updateUserProfile as updateUserProfileService 
+} from '../services/userService.js'
 
-module.exports.createUser = async (req, res) => {
+export async function createUser(req, res) {
   let response = {}
 
   try {
-    const responseFromService = await userService.createUser(req.body)
+    const responseFromService = await createUserService(req.body)
     response.status = 200
     response.message = 'User successfully created'
     response.body = responseFromService
@@ -17,11 +22,11 @@ module.exports.createUser = async (req, res) => {
   return res.status(response.status).send(response)
 }
 
-module.exports.loginUser = async (req, res) => {
+export async function loginUser(req, res) {
   let response = {}
 
   try {
-    const responseFromService = await userService.loginUser(req.body)
+    const responseFromService = await loginUserService(req.body)
     response.status = 200
     response.message = 'User successfully logged in'
     response.body = responseFromService
@@ -34,11 +39,11 @@ module.exports.loginUser = async (req, res) => {
   return res.status(response.status).send(response)
 }
 
-module.exports.getUserProfile = async (req, res) => {
+export async function getUserProfile(req, res) {
   let response = {}
 
   try {
-    const responseFromService = await userService.getUserProfile(req)
+    const responseFromService = await getUserProfileService(req)
     response.status = 200
     response.message = 'Successfully got user profile data'
     response.body = responseFromService
@@ -51,11 +56,11 @@ module.exports.getUserProfile = async (req, res) => {
   return res.status(response.status).send(response)
 }
 
-module.exports.updateUserProfile = async (req, res) => {
+export async function updateUserProfile(req, res) {
   let response = {}
 
   try {
-    const responseFromService = await userService.updateUserProfile(req)
+    const responseFromService = await updateUserProfileService(req)
     response.status = 200
     response.message = 'Successfully updated user profile data'
     response.body = responseFromService

@@ -1,22 +1,22 @@
-const express = require('express')
-const router = express.Router()
-const userController = require('../controllers/userController')
-const tokenValidation = require('../middleware/tokenValidation')
+import { Router } from 'express'
+const router = Router()
+import { createUser, loginUser, getUserProfile, updateUserProfile } from '../controllers/userController.js'
+import { validateToken } from '../middleware/tokenValidation.js'
 
-router.post('/signup', userController.createUser)
+router.post('/signup', createUser)
 
-router.post('/login', userController.loginUser)
+router.post('/login', loginUser)
 
 router.post(
   '/profile',
-  tokenValidation.validateToken,
-  userController.getUserProfile
+  validateToken,
+  getUserProfile
 )
 
 router.put(
   '/profile',
-  tokenValidation.validateToken,
-  userController.updateUserProfile
+  validateToken,
+  updateUserProfile
 )
 
-module.exports = router
+export default router
