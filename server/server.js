@@ -9,8 +9,8 @@ import dbConnection from './database/connection.js';
 import userRoutes from './routes/userRoutes.js';  // Remplacement de require par import
 
 // Charger le fichier YAML
-const swaggerFilePath = path.resolve("../swagger.yaml");
-const swaggerDocs = yaml.load(fs.readFileSync(swaggerFilePath, 'utf8'));
+// const swaggerFilePath = path.resolve("../swagger.yaml");
+const swaggerDocs = yaml.load("../swagger.yaml");
 
 dotenv.config();
 
